@@ -181,6 +181,9 @@ jobs:
           path: renamed-artifacts/*
           retention-days: 3 # 保留3天
           compression-level: 8
+      - name: Get artifact URL
+        id: get-url
+        run: echo "${{ steps.upload-artifact.outputs.artifact_url }}"
 
   Build-Summary:
     needs: nightly-build
@@ -198,7 +201,8 @@ jobs:
           path: all-artifacts
           merge-multiple: false
         continue-on-error: false
-
+      - name: Get artifact URL
+        run: echo "${{ steps.download-artifact.outputs.artifact_url }}"
       - name: Create summary report
         run: |
           echo "## ⚠️ 警告：这是每日构建版本" >> $GITHUB_STEP_SUMMARY
