@@ -197,7 +197,7 @@ jobs:
         with:
           path: all-artifacts
           merge-multiple: false
-        continue-on-error: true
+        continue-on-error: false
 
       - name: Create summary report
         run: |
